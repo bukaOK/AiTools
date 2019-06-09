@@ -12,12 +12,6 @@ namespace AiTools.DAL.Entities
         public string FirstName { get; set; }
         public string SirName { get; set; }
         public DateTime? BirthDate { get; set; }
-        /// <summary>
-        /// Счет
-        /// </summary>
-        public double Cash { get; set; }
-        [ForeignKey("PayGroupId")]
-        public PayGroup PayGroup { get; set; }
-        public Guid? PayGroupId { get; set; }
+        public string InviteKey { get; set; }
     }
 }

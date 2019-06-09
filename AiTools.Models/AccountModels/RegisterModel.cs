@@ -22,5 +22,7 @@ namespace AiTools.Models.AccountModels
         [Required]
         [Compare("Password")]
         public string PasswordConfirm { get; set; }
+        [Required]
+        public string InviteKey { get; set; }
     }
 }

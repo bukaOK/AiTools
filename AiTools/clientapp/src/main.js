@@ -5,10 +5,10 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 import 'vuetify/dist/vuetify.min.css'; 
-import Vuelidate from 'vuelidate';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Papa from 'papaparse'
 
-Vue.use(Vuelidate);
+Papa.SCRIPT_PATH = './papapath.js'
 
 Vue.config.productionTip = false;
 //Vue.use(Element, {locale});

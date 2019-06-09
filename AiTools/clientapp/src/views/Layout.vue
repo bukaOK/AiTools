@@ -18,8 +18,7 @@
                                     <v-list-tile-title>{{item.title}}</v-list-tile-title>
                                 </v-list-tile-content>
                             </v-list-tile>
-                            <v-list-tile v-for="(nestItem, nestInd) in item.items" :key="nestInd"
-                                @click="nestItem.onClick">
+                            <v-list-tile v-for="(nestItem, nestInd) in item.links" :key="nestInd" :to="nestItem.to">
                                 <v-list-tile-action>
                                     <v-icon>{{ nestItem.icon }}</v-icon>
                                 </v-list-tile-action>
@@ -28,7 +27,7 @@
                                 </v-list-tile-content>
                             </v-list-tile>
                         </v-list-group>
-                        <v-list-tile v-else :key="ind" @click="item.onClick">
+                        <v-list-tile v-else :key="ind" :to="item.link">
                             <v-list-tile-action>
                                 <v-icon>{{ item.icon }}</v-icon>
                             </v-list-tile-action>
@@ -70,13 +69,10 @@
 </template>
 <script>
     import {mapState, mapActions} from 'vuex';
-    import PayInfo from '../components/PayInfo.vue';
+    
 
     export default {
         name: 'layout',
-        components: {
-            PayInfo
-        },
         data(){
             return{
                 logOffError: false,
@@ -85,38 +81,46 @@
                     {
                         closeIcon: 'fas fa-angle-down',
                         openIcon: 'fas fa-angle-up',
-                        title: 'Прогнозы',
+                        title: 'Анализ данных',
                         isGroup: true,
                         isOpen: false,
-                        items: [
+                        links: [
                             {
-                                title: 'Сезонный прогноз спроса',
-                                icon: 'fas fa-cloud-sun-rain',
-                                onClick: () => {
-                                    this.$router.push('/forecasts/season')
-                                }
+                                title: 'Новый анализ',
+                                icon: 'fas fa-file-alt',
+                                to: '/analyze/data'
+                            },
+                            {
+                                title: 'Результаты',
+                                icon: 'fas fa-archive',
+                                to: '/analyze/results'
                             }
                         ]
                     },
-                    { 
-                        title: 'История операций', 
-                        icon: 'fas fa-history',
-                        onClick: () => {
-                            this.$router.push('/operations')
-                        }
+                    {
+                        closeIcon: 'fas fa-angle-down',
+                        openIcon: 'fas fa-angle-up',
+                        title: 'Прогнозы',
+                        isGroup: true,
+                        isOpen: false,
+                        links: [
+                            {
+                                title: 'Новый прогноз',
+                                icon: 'fas fa-chart-line',
+                                to: '/forecasts/new'
+                            },
+                            {
+                                title: 'Результаты',
+                                icon: 'fas fa-archive',
+                                to: '/forecasts/results'
+                            }
+                        ]
                     },
                     {
-                        title: 'Пополнить счет',
-                        icon: 'fas fa-plus-square',
-                        onClick: () => {
-                            this.$router.push('/payin')
-                        }
-                    },
-                    {
-                        title: 'Вывести средства',
-                        icon: 'fas fa-minus-square'
-                    },
-
+                        icon: 'group',
+                        link: '/employees',
+                        title: 'Сотрудники'
+                    }
                 ]
             };
         },

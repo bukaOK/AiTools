@@ -5,12 +5,12 @@ using System.Text;
 
 namespace AiTools.BLL.Infrastructure
 {
-    public abstract class DataService<TService> : IDataService
+    public abstract class DataService: IDataService
     {
-        protected readonly ILogger<TService> logger;
+        protected readonly ILogger logger;
         protected DataServiceResult Success => DataServiceResult.Success();
 
-        public DataService(ILogger<TService> logger)
+        public DataService(ILogger logger)
         {
             this.logger = logger;
         }

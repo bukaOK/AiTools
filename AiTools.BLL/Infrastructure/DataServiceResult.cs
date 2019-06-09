@@ -29,9 +29,9 @@ namespace AiTools.BLL.Infrastructure
         public bool Succeeded { get; }
         public IEnumerable<string> Errors { get; }
 
-        public static DataServiceResult Success() => Success(null);
+        public static DataServiceResult Success() => new DataServiceResult(true, null);
 
-        public static DataServiceResult Success(object data) => new DataServiceResult(true, data);
+        public static DataServiceResult Success<TData>(TData data) => new DataServiceResult(true, data);
 
         public static DataServiceResult Failed(params string[] errors) => Failed(errors.ToList());
 

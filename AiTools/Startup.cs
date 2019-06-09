@@ -17,6 +17,9 @@ using AiTools.Models.HandlerModels;
 using AiTools.BLL.Infrastructure;
 using System.Linq;
 using System;
+using AiTools.BLL.Providers;
+using AiTools.DAL.Core;
+using System.Collections.Generic;
 
 namespace AiTools
 {
@@ -56,23 +59,29 @@ namespace AiTools
                 opts.Cookie.Name = "AiToolsCookie";
             });
 
-            var assemblyTypes = Assembly.GetAssembly(typeof(DataService<>)).GetTypes();
+            var assemblyTypes = Assembly.GetAssembly(typeof(DataService)).GetTypes();
             var iDataType = typeof(IDataService);
-            var dataType = typeof(DataService<>);
+            var dataType = typeof(DataService);
             //Services DI
-            foreach (var servType in assemblyTypes.Where(x => x != dataType && IsSubclassOfRawGeneric(dataType, x)))
+            foreach (var servType in assemblyTypes.Where(x => x != dataType && x.IsSubclassOf(dataType)))
             {
                 services.AddTransient(assemblyTypes.First(x => x.IsInterface && x.IsAssignableFrom(servType) && x != iDataType), servType);
+            }
+            assemblyTypes = Assembly.GetAssembly(typeof(Repository<>)).GetTypes();
+            var repoType = typeof(Repository<>);
+            foreach (var rt in assemblyTypes.Where(x => x != repoType && IsSubclassOfRawGeneric(repoType, x)))
+            {
+                services.AddTransient(rt);
             }
 
             services.AddScoped<UserManager>();
             services.AddScoped<SignInManager>();
-            //services.AddScoped<Authenticator>();
-            //services.AddTransient<IHttpClient, YaHttpClient>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddHttpContextAccessor();
             services.AddHttpClient();
+
+            services.AddSingleton<FileProvider>();
 
             if (currentEnv.IsDevelopment())
             {
@@ -81,8 +90,8 @@ namespace AiTools
             //Настраиваем маппинг
             var mapConfig = new MapperConfiguration(mc =>
             {
-                //Скан текущей сборки для получения профилей
-                mc.AddProfiles(Assembly.GetExecutingAssembly());
+                //Скан сборки для получения профилей
+                mc.AddProfiles(Assembly.GetAssembly(dataType));
             });
             services.AddSingleton(mapConfig.CreateMapper());
         }
@@ -149,12 +158,14 @@ namespace AiTools
                 User user = authenticated
                     ? await userManager.FindByNameAsync(context.User.Identity.Name)
                     : null;
-
+                IList<string> userRoles = new List<string>();
+                if (authenticated)
+                    userRoles = await userManager.GetRolesAsync(user);
                 var state = new ClientState
                 {
                     UserAuthenticated = authenticated,
                     UserName = user == null ? null : $"{user.FirstName} {user.SirName}",
-                    UserCash = user.Cash.ToString("0.00 р", CultureInfo.InvariantCulture)
+                    UserRoles = userRoles
                 };
 
                 await context.Response.WriteAsync(JsonConvert.SerializeObject(state));

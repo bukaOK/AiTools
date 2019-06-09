@@ -1,6 +1,6 @@
 ﻿module.exports = {
     devServer: {
-        open: true,
+        open: false,
         port: 4000,
         hot: true
     }

@@ -3,9 +3,11 @@ import Register from './views/Register.vue'
 import Login from './views/Login.vue'
 import Home from './views/Home.vue'
 import VueRouter from 'vue-router'
-import PayOperations from './views/PayOperations.vue'
-import PayIn from './views/PayIn.vue'
-import SeasonForecast from './views/SeasonForecast.vue'
+import DataAnalyze from './views/DataAnalyze'
+import AnalyzeResults from './views/AnalyzeResults'
+import AddForecast from './views/AddForecast'
+import ForecastList from './views/ForecastList'
+import Employees from './views/Employees'
 
 Vue.use(VueRouter)
 
@@ -29,19 +31,40 @@ export default new VueRouter({
             component: Login
         },
         {
-            path: '/forecasts/season',
-            name: 'seasonForecast',
-            component: SeasonForecast
+            path: '/analyze/data/',
+            name: 'dataAnalyze',
+            component: DataAnalyze
         },
         {
-            path: '/operations',
-            name: 'payOperations',
-            component: PayOperations
+            path: '/analyze/data/:id',
+            name: 'dataAnalyzeEdit',
+            props: true,
+            component: DataAnalyze
         },
         {
-            path: '/payin',
-            name: 'payIn',
-            component: PayIn
+            path: '/analyze/results',
+            name: 'analyzeResults',
+            component: AnalyzeResults
+        },
+        {
+            path: '/forecasts/new',
+            name: 'addForecast',
+            component: AddForecast
+        },
+        {
+            path: '/forecasts/edit/:id',
+            name: 'editForecast',
+            component: AddForecast
+        },
+        {
+            path: '/forecasts/results',
+            name: 'forecastList',
+            component: ForecastList
+        },
+        {
+            path: '/employees',
+            name: 'employees',
+            component: Employees
         }
     ]
 })

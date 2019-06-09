@@ -21,7 +21,7 @@ namespace AiTools.DAL.Initializers
         public async Task InitializeAsync()
         {
             //Создаем роли
-            var roles = new[] { "admin", "client" };
+            var roles = new[] { "admin", "user" };
             var existingRoles = await roleManager.Roles.ToListAsync();
             if(existingRoles.Count == 0)
             {

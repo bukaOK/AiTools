@@ -11,6 +11,6 @@ namespace AiTools.Models.HandlerModels
         /// Имя Фамилия
         /// </summary>
         public string UserName { get; set; }
-        public string UserCash { get; set; }
+        public IList<string> UserRoles { get; set; }
     }
 }

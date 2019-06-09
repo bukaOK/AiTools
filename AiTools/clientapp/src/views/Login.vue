@@ -31,13 +31,8 @@
 <script>
     import formHelper from'../helpers/formHelper.js';
     import {mapState} from 'vuex';
-    import {required, email} from 'vuelidate/lib/validators';
 
     export default {
-        validations: {
-            email: { required, email },
-            password: { required }
-        },
         name: 'login',
         data(){
             return {

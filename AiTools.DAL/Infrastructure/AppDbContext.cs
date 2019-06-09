@@ -9,11 +9,10 @@ namespace AiTools.DAL.Infrastucture
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
         }
 
-        public DbSet<PayGroup> PayGroups { get; set; }
-        public DbSet<Shop> Shops { get; set; }
+        public DbSet<AnalyzeResult> AnalyzeResults { get; set; }
+        public DbSet<ForecastResult> ForecastResults { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

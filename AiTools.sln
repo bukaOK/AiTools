@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AiTools", "AiTools\AiTools.csproj", "{93A0DDE1-14ED-41A6-91F1-44D2E14E31E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiTools.DAL", "AiTools.DAL\AiTools.DAL.csproj", "{A4BAFE9E-E1C6-4102-BC68-C612607452EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AiTools.DAL", "AiTools.DAL\AiTools.DAL.csproj", "{A4BAFE9E-E1C6-4102-BC68-C612607452EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiTools.Models", "AiTools.Models\AiTools.Models.csproj", "{D84EB853-0B9E-40B5-9C5A-92A115622180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AiTools.Models", "AiTools.Models\AiTools.Models.csproj", "{D84EB853-0B9E-40B5-9C5A-92A115622180}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiTools.BLL", "AiTools.BLL\AiTools.BLL.csproj", "{D5AFA30D-E9C9-4FEC-BB59-2A7F35D6F79C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AiTools.BLL", "AiTools.BLL\AiTools.BLL.csproj", "{D5AFA30D-E9C9-4FEC-BB59-2A7F35D6F79C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiTools.CodeData", "AiTools.CodeData\AiTools.CodeData.csproj", "{F513E4C1-965A-4106-9D8A-729715295017}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D5AFA30D-E9C9-4FEC-BB59-2A7F35D6F79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5AFA30D-E9C9-4FEC-BB59-2A7F35D6F79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5AFA30D-E9C9-4FEC-BB59-2A7F35D6F79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F513E4C1-965A-4106-9D8A-729715295017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F513E4C1-965A-4106-9D8A-729715295017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F513E4C1-965A-4106-9D8A-729715295017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F513E4C1-965A-4106-9D8A-729715295017}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

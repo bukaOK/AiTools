@@ -24,14 +24,10 @@ namespace AiTools.Controllers
             {
                 var result = await userService.RegisterAsync(model);
                 if (result.Succeeded)
-                {
                     return Ok();
-                }
                 else
-                {
                     foreach (var err in result.Errors)
                         ModelState.AddModelError("", err);
-                }
             }
             return BadRequest(ModelState);
         }
